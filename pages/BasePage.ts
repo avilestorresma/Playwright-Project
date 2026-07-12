@@ -1,8 +1,11 @@
 import { BaseContext } from "../core/BaseContext";
 
 export abstract class BasePage extends BaseContext {
-  async navigate(path: string = "/"): Promise<void> {
-    await this.page.goto(path);
+
+  protected abstract readonly path: string;
+
+  async navigate(): Promise<void> {
+    await this.page.goto(this.path);
   }
 
   async reload(): Promise<void> {
